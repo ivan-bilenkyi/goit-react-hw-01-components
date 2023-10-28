@@ -1,3 +1,5 @@
+import { UserProfile, UserAbout, UserStats } from './Profile.style';
+
 export const Profile = ({
   user: {
     avatar,
@@ -8,27 +10,29 @@ export const Profile = ({
   },
 }) => {
   return (
-    <div className="profile">
-      <div className="description">
-        <img src={avatar} alt={username} className="avatar" width="300" />
-        <p className="name">{username}</p>
-        <p className="tag">@{tag}</p>
-        <p className="location">{location}</p>
+    <UserProfile>
+      <div>
+        <img src={avatar} alt={username} />
+        <UserAbout>
+          <h2>{username}</h2>
+          <p>@{tag}</p>
+          <p>{location}</p>
+        </UserAbout>
       </div>
-      <ul className="stats">
+      <UserStats>
         <li>
-          <span className="label">Followers</span>
-          <span className="quantity">{followers}</span>
+          <p>Followers</p>
+          <b>{followers}</b>
         </li>
         <li>
-          <span className="label">Views</span>
-          <span className="quantity">{views}</span>
+          <p>Views</p>
+          <b>{views}</b>
         </li>
         <li>
-          <span className="label">Likes</span>
-          <span className="quantity">{likes}</span>
+          <p>Likes</p>
+          <b>{likes}</b>
         </li>
-      </ul>
-    </div>
+      </UserStats>
+    </UserProfile>
   );
 };

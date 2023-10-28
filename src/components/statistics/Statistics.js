@@ -1,16 +1,40 @@
-export const Statistics = ({ data }) => {
-  return (
-    <section className="statistics">
-      <h2 className="title">Upload stats</h2>
+import { StatList } from './Statistics.style';
 
-      <ul className="stat-list">
+export const Statistics = ({ data, title }) => {
+  return (
+    <section>
+      {title && (
+        <h2
+          style={{
+            textAlign: 'center',
+            marginBottom: '20px',
+          }}
+        >
+          {title}
+        </h2>
+      )}
+
+      <StatList>
         {data.map(({ id, label, percentage }) => (
-          <li className="item" key={id}>
-            <span className="label">{label}</span>
-            <span className="percentage">{percentage}</span>
+          <li
+            key={id}
+            style={{
+              background: getBgColor(),
+            }}
+          >
+            <p>{label}</p>
+            <span>{percentage}%</span>
           </li>
         ))}
-      </ul>
+      </StatList>
     </section>
   );
 };
+
+function getBgColor() {
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += Math.floor(Math.random() * 10);
+  }
+  return color;
+}
